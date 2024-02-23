@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the UK General Election Winner</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      padding-left: 5%;
+      padding-right:5%; 
+      padding-top: 1%; 
+      padding-bottom: 1%;
+    }
+    .instructions {
+      margin-bottom: 20px;
+    }
+    #map {
+            height: 450px;
+            width: 100%;
+            justify-content: center;
+        }
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .rounded-button {
+      border-radius: 20px;
+      padding: 15px 30px; /* Increased padding */
+        font-size: 16px; /* Increased font size */
+        width: 190px; 
+        outline: none;
+        border: none;
+    }
+    .streetview-container {
+  margin: 0 auto 20px; /* Added margin-bottom of 20px */
+  overflow: hidden;
+}
+.message {
+    text-align: center; /* Center text horizontally */
+    margin-top: 20px; /* Add margin-top to create space between buttons and message */
+    font-size: 24px; /* Adjust font size as needed */
+    width: 100%; /* Ensure message div spans the full width */
+}
+
+  </style>
+</head>
+<body>
+
+<div class="instructions">
+  <p><b>Instructions: </b>The image below shows a Google streetview panorama of a random location in the UK. Can you guess which party won this constituency in the 2019 general election?</p>
+</div>
+<div class="streetview-container">
+    <div id="map"></div>
+</div>
+    <script src="static/script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHJzeoprtxwf59esMU2U3NQGPhQJVhIYk&callback=initMap"></script>
+    <div class="button-container">
+        <!-- Rounded buttons for parties -->
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #0087dc;" onclick="getPartyName(this)">Conservative</button>
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #d50000;" onclick="getPartyName(this)">Labour</button>
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #FDBB30;" onclick="getPartyName(this)">Liberal Democrats</button>
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #FDEA6B;" onclick="getPartyName(this)">SNP</button>
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #008066;" onclick="getPartyName(this)">Green</button>
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #D46A4C;" onclick="getPartyName(this)">DUP</button>
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #326760;" onclick="getPartyName(this)">Sinn Fein</button>
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #3F8428;" onclick="getPartyName(this)">Plaid Cymru</button>
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #FFD700;" onclick="getPartyName(this)">Alliance</button>
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #2AA82C;" onclick="getPartyName(this)">SDLP</button>
+        <button type="button" class="btn btn-primary rounded-button" style="background-color: #000000;" onclick="getPartyName(this)">Other</button>
+      </div>
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+      <div id="message", class="message"></div>
+      <div id="try-again-button-container", class="button-container"></div>
+
+      </body>
+      </html>
+      
