@@ -1,5 +1,8 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, render_template
 import geopandas as gpd
+import os
+
+API_KEY = 'AIzaSyDHJzeoprtxwf59esMU2U3NQGPhQJVhIYk'
 
 app = Flask(__name__)
 
@@ -29,7 +32,8 @@ def get_info():
 
 @app.route('/')
 def index():
-    return send_from_directory('static', 'index.html')
+    return render_template('index.html')
+
 
 
 if __name__ == '__main__':

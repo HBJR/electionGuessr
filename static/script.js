@@ -13,7 +13,7 @@ function fetchData() {
                 return response.json();
             })
             .then(data => {
-                console.log('Received data:', data); // Log received data to console
+                // console.log('Received data:', data); // Log received data to console
                 return data; // Return the fetched data for further processing if needed
             })
             .catch(error => {
@@ -191,17 +191,39 @@ function resetGame() {
 function finishGame(){
     document.body.innerHTML = '';
 
+    const finishContainer = document.createElement('div');
+    finishContainer.style.position = 'absolute';
+    finishContainer.style.top = '50%';
+    finishContainer.style.left = '50%';
+    finishContainer.style.transform = 'translate(-50%, -50%)';
+
+
     // Create elements to display the total score
     const scoreContainer = document.createElement('div');
     scoreContainer.textContent = 'Total Score: ' + score + ' out of ' + total + "!";
     scoreContainer.style.fontSize = '72px';
     scoreContainer.style.textAlign = 'center';
-    scoreContainer.style.position = 'absolute';
-    scoreContainer.style.top = '50%';
-    scoreContainer.style.left = '50%';
-    scoreContainer.style.transform = 'translate(-50%, -50%)';
+
+    const shareContainer = document.createElement('div');
+    const link = document.createElement('a');
+    shareContainer.appendChild(link);
+    let text = "I just scored " + score + " out of " + total + " playing electionGuessr! Try it yourself at ";
+    let url = "google.com";
+    link.textContent = "Share your score!"; 
+    const twitterUrl = "https://twitter.com/intent/tweet/";
+    const twitterQuery = `text=${text}&url=${url}`;
+    link.href = `${twitterUrl}?${twitterQuery}&`;
+    link.target = "_blank"; 
+    shareContainer.style.textAlign = 'center';
+    shareContainer.width = '100%';
+
+
 
     // Add the score container to the page
-    document.body.appendChild(scoreContainer);
+    finishContainer.appendChild(scoreContainer);
+    finishContainer.appendChild(shareContainer);
+
+    document.body.appendChild(finishContainer);
+
 
 }
