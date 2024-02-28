@@ -2,8 +2,6 @@ from flask import Flask, jsonify, send_from_directory, render_template
 import geopandas as gpd
 import os
 
-API_KEY = 'AIzaSyDHJzeoprtxwf59esMU2U3NQGPhQJVhIYk'
-
 app = Flask(__name__)
 
 # Load the shapefile
