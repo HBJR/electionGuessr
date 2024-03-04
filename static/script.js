@@ -1,6 +1,7 @@
 let infoData; 
 let score = 0;
 let total = 0;
+let streetViewService;
 
 function fetchData() {
     if (!infoData) {
@@ -24,6 +25,10 @@ function fetchData() {
     return infoData; // Return the promise for fetched data
 }
 
+function onStreetViewReady() {
+	streetViewService = new google.maps.StreetViewService();
+	initMap();
+}
 
 function initMap() {
     fetchData()
@@ -38,9 +43,6 @@ function initMap() {
             lng: lng
         };
 
-        // Initialize StreetViewService
-        var streetViewService = new google.maps.StreetViewService();
-
         // Search for the nearest panorama from the random coordinates
         streetViewService.getPanorama({
             location: latLng,
@@ -48,6 +50,8 @@ function initMap() {
         }, function(data, status) {
             if (status === "OK") {
                 // Display the panorama if found
+		// But first, clear any previous street view instances
+		document.getElementById("map").textContent = "";
                 var panorama = new google.maps.StreetViewPanorama(
                     document.getElementById("map"), {
                         position: data.location.latLng,
